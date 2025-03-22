@@ -1,0 +1,33 @@
+# To completely understand the enchant config: https://github.com/Pulsih/PrisonEnchants-Wiki/wiki/Custom-Enchant-Config
+displayname: "<gradient:dark_purple:light_purple>Dragon Rush"
+description: "Summon a dragon to mine blocks for you."
+max-level: 2
+cost: 10
+enchant-economy: "gems"
+chance: 1%
+cooldown: 1200
+conflicts-with:
+  - "apocalypse"
+
+activation-type: "BLOCK-BREAK"
+on-activation:
+  play-sound:
+    action: "PLAY_SOUND"
+    sound: "entity.ender_dragon.hurt,5,1,true"
+
+  send-title:
+    action: "SEND_TITLE"
+    title: "<dark_purple><b>Dragon Rush,<green>Summoned!,10,20,40"
+
+  spawn-dragon:
+    action: "SPAWN_MINER"
+    entity-type: "ender_dragon"
+    movement: "MOVE_DOWN"
+    movement-delay: 0.1
+    movement-loop: true
+    stay-time: 10
+    custom-name: "<green><b>%player%'s dragon"
+
+    explosion-type: "CUBE"
+    range: "BASED_ON_LEVEL"
+    mine-delay: 5 # In ticks, delay between explosions. (If not specified it will use 5 as default)

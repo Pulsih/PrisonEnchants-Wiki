@@ -1,0 +1,38 @@
+# To completely understand the enchant config: https://github.com/Pulsih/PrisonEnchants-Wiki/wiki/Custom-Enchant-Config
+displayname: "<green>Apocalypse"
+description: "Summon 3 zombies to mine blocks for you."
+max-level: 2
+cost: 10
+enchant-economy: "gems"
+conflicts-with:
+  - "dragon_rush"
+
+chance: 10%
+cooldown: 600
+
+activation-type: "BLOCK-BREAK"
+on-activation:
+  send-title:
+    action: "SEND_TITLE"
+    title: "<dark_red><b>Apocalypse,<red>Incoming!,10,20,40"
+
+  play-sound:
+    action: "PLAY_SOUND"
+    sound: "block.end_portal.spawn,5,1,true"
+
+  spawn-miner:
+    action: "SPAWN_MINER"
+    location: "RANDOM[5]"
+    entity-type: "zombie"
+    movement: "MOVE_DOWN"
+    movement-delay: 0.2
+    movement-loop: true
+    stay-time: 10
+    custom-name: "<green><b>%player%'s Zombie"
+
+    explosion-type: "CUBE"
+    range: "BASED_ON_LEVEL"
+    #mine-delay: 5 # In ticks, delay between explosions. (If not specified it will use 5 as default)
+
+    loop-times: 2
+    #loop-delay: 1 # The delay between loops, it can't be lower than 1, if not specified, it will use 1.

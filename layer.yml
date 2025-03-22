@@ -1,0 +1,24 @@
+# To completely understand the enchant config: https://github.com/Pulsih/PrisonEnchants-Wiki/wiki/Custom-Enchant-Config
+displayname: '<light_purple>Layer'
+max-level: 3
+cost: 10
+
+chance: 5%
+cooldown: 100
+
+activation-type: "BLOCK-BREAK"
+on-activation:
+  explode:
+    action: "EXPLOSION"
+    explosion-type: "LAYER"
+    range: 25
+    height: "BASED_ON_LEVEL"
+    max-height: 3
+
+  spawn-particle:
+    action: "SPAWN_PARTICLE"
+    particle: "explosion"
+
+  play-sound:
+    action: "PLAY_SOUND"
+    sound: "entity.generic.explode,5,1,true"

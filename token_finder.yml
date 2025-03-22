@@ -1,0 +1,30 @@
+# To completely understand the enchant config: https://github.com/Pulsih/PrisonEnchants-Wiki/wiki/Custom-Enchant-Config
+displayname: "<light_purple>Token Finder"
+description: "Allows you to find tokens while mining!"
+max-level: 15
+cost: 10
+chance: 2.5%
+# This formula will only work if the base chance is specified.
+# If no chance-increase-formula has been specified, it will use the base chance.
+# This formula is used to increase the chance percentage over levels.
+# The formula will replace the base cost, IT DOES NOT SUM THE BASE CHANCE WITH THE FORMULA.
+chance-increase-formula: "base_chance + 0.5 * (current_level - 1)"
+cooldown: 200
+
+# commands-on-enchant:
+  # - "broadcast Added %levels% levels of token finder!"
+
+activation-type: "BLOCK-BREAK"
+on-activation:
+  give-tokens:
+    action: "CONSOLE_CMD"
+    commands:
+      - "tokens add %player% random(%enchant_level%-2;%enchant_level%+2) silent=true target_silent=true apply_multiplier=true"
+
+  play-sound:
+    action: "PLAY_SOUND"
+    sound: "entity.villager.celebrate,5,1"
+
+  spawn-particle:
+    action: "SPAWN_PARTICLE"
+    particle: "happy_villager,50"

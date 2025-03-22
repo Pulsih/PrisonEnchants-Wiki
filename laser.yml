@@ -1,0 +1,31 @@
+# To completely understand the enchant config: https://github.com/Pulsih/PrisonEnchants-Wiki/wiki/Custom-Enchant-Config
+displayname: '<yellow>Laser'
+description: "Shoots a laser that will create an explosion at the first block found."
+max-level: 3
+cost: 10
+
+chance: 100%
+cooldown: 300
+
+activation-type: "RAYCAST[UP_RIGHT]"
+on-activation:
+  spawn-laser:
+    action: "SPAWN_PARTICLE"
+    particle: "REDSTONE"
+    location: "PLAYER_EYES"
+    to-location: "ACTIVATING_LOCATION"
+    shape: "LINE[0.5]"
+
+  explode:
+    action: "EXPLOSION"
+    explosion-type: "CUBE"
+    range: "DYNAMIC"
+    max-range: 5
+
+  spawn-particle:
+    action: "SPAWN_PARTICLE"
+    particle: "explosion"
+
+  play-sound:
+    action: "PLAY_SOUND"
+    sound: "entity.generic.explode,5,1,true"

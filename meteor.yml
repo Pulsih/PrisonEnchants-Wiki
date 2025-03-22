@@ -1,0 +1,43 @@
+# To completely understand the enchant config: https://github.com/Pulsih/PrisonEnchants-Wiki/wiki/Custom-Enchant-Config
+displayname: "<dark_purple>Meteor"
+description: "Spawn a meteor and create a huge explosion."
+max-level: 3
+cost: 10
+
+chance: 8%
+cooldown: 600
+
+activation-type: "BLOCK-BREAK"
+on-activation:
+  play-sound:
+    action: "PLAY_SOUND"
+    sound: "item.firecharge.use,5,-1,true"
+
+  spawn-meteor:
+    action: "SPAWN_ENTITY"
+    location: "RANDOM[6]+10y"
+    entity-type: "fireball"
+    movement: "MOVE_DOWN"
+    movement-delay: 0.01
+    movement-loop: true
+    stay-time: 3
+    on-death-action: "explode"
+
+  explode:
+    depend-on-action: true
+    action: "EXPLOSION"
+    explosion-type: "TNT"
+    range: "DYNAMIC"
+    max-range: 16
+    on-end-action: "spawn-particle"
+
+  spawn-particle:
+    depend-on-action: true
+    action: "SPAWN_PARTICLE"
+    particle: "explosion"
+    on-end-action: "play-explosion-sound"
+
+  play-explosion-sound:
+    depend-on-action: true
+    action: "PLAY_SOUND"
+    sound: "entity.generic.explode,5,1,true"

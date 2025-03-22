@@ -1,0 +1,24 @@
+# To completely understand the enchant config: https://github.com/Pulsih/PrisonEnchants-Wiki/wiki/Custom-Enchant-Config
+displayname: '<red>Explosive'
+description: "Create TNT explosions while mining."
+max-level: 10
+cost: 10
+
+chance: 50%
+cooldown: 10
+
+activation-type: "BLOCK-BREAK"
+on-activation:
+  explode:
+    action: "EXPLOSION"
+    explosion-type: "TNT"
+    range: "DYNAMIC"
+    max-range: 6
+
+  spawn-particle:
+    action: "SPAWN_PARTICLE"
+    particle: "explosion"
+
+  play-sound:
+    action: "PLAY_SOUND"
+    sound: "entity.generic.explode,5,1,true"

@@ -1,0 +1,28 @@
+# To completely understand the enchant config: https://github.com/Pulsih/PrisonEnchants-Wiki/wiki/Custom-Enchant-Config
+displayname: '<aqua>Lightning'
+description: "Strike a lightning that destroys everything around."
+max-level: 15
+cost: 10
+
+chance: 100%
+cooldown: 200
+
+activation-type: "RAYCAST[SHIFT_LEFT]"
+on-activation:
+  spawn-lightning:
+    action: "SPAWN_ENTITY"
+    entity-type: "lightning_bolt"
+
+  explode:
+    action: "EXPLOSION"
+    explosion-type: "TNT"
+    range: "DYNAMIC"
+    max-range: 20
+
+  spawn-particle:
+    action: "SPAWN_PARTICLE"
+    particle: "explosion"
+
+  play-sound:
+    action: "PLAY_SOUND"
+    sound: "entity.generic.explode,5,1,true"

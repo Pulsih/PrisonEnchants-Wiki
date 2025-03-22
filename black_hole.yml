@@ -1,0 +1,73 @@
+# To completely understand the enchant config: https://github.com/Pulsih/PrisonEnchants-Wiki/wiki/Custom-Enchant-Config
+displayname: '<black>Black hole'
+description: "Summon a black hole that mine more and more blocks over time."
+max-level: 5
+cost: 10
+
+chance: 12%
+cooldown: 600
+
+activation-type: "BLOCK-BREAK"
+on-activation:
+  black-particles: # When called, continuously spawn black and blue particles.
+    depend-on-action: true
+    action: "SPAWN_PARTICLE"
+    particle: "smoke,10,0.3,0.3,0.3,0"
+
+    loop-times: 30
+    on-end-action: "blue-particles"
+
+  blue-particles:
+    depend-on-action: true
+    action: "SPAWN_PARTICLE"
+    particle: "entity_effect,10,0,0,0,0.2"
+
+  spawn-particle:
+    depend-on-action: true
+    action: "SPAWN_PARTICLE"
+    particle: "end_rod"
+    on-end-action: "play-sound"
+
+  play-sound:
+    depend-on-action: true
+    action: "PLAY_SOUND"
+    sound: "block.end_portal_frame.fill,5,-1,true"
+    on-end-action: "black-particles"
+
+  explode1:
+    action: "EXPLOSION"
+    explosion-type: "SPHERE"
+    range: 3
+    on-end-action: "spawn-particle"
+
+  explode2:
+    required-level: 2
+    execute-delay: 10
+    action: "EXPLOSION"
+    explosion-type: "SPHERE"
+    range: 5
+    on-end-action: "spawn-particle"
+
+  explode3:
+    required-level: 3
+    execute-delay: 20
+    action: "EXPLOSION"
+    explosion-type: "SPHERE"
+    range: 7
+    on-end-action: "spawn-particle"
+
+  explode4:
+    required-level: 4
+    execute-delay: 30
+    action: "EXPLOSION"
+    explosion-type: "SPHERE"
+    range: 9
+    on-end-action: "spawn-particle"
+
+  explode5:
+    required-level: 5
+    execute-delay: 40
+    action: "EXPLOSION"
+    explosion-type: "SPHERE"
+    range: 11
+    on-end-action: "spawn-particle"

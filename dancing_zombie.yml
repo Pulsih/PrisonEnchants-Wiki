@@ -1,0 +1,20 @@
+# To completely understand the enchant config: https://github.com/Pulsih/PrisonEnchants-Wiki/wiki/Custom-Enchant-Config
+displayname: "<light_purple>Dancing Zombie"
+description: "Summon a zombie that does absolutely nothing and will dance for you."
+max-level: 1
+cost: 10
+
+chance: 100%
+cooldown: 200
+
+activation-type: "BLOCK-BREAK"
+on-activation:
+  spawn_zombie:
+    action: "SPAWN_ENTITY"
+    entity-type: "zombie"
+    movement: "dancing_zombie" # From the file custom_movements.yml
+    # The delay, in seconds, between the steps of the custom movement. You can use decimals.
+    movement-delay: 0.2
+    movement-loop: true
+    stay-time: 10
+    custom-name: "<green><b>%player%'s Dancing Zombie"

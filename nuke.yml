@@ -1,0 +1,63 @@
+# To completely understand the enchant config: https://github.com/Pulsih/PrisonEnchants-Wiki/wiki/Custom-Enchant-Config
+displayname: "<gradient:red:green>Nuke"
+description: "Nuke the ground with a bombardment of TNTs!"
+max-level: 3
+cost: 10
+
+chance: 20%
+cooldown: 1200
+
+activation-type: "BLOCK-BREAK"
+on-activation:
+  spawn-nuke: # Spawn 4 nukes.
+    action: "SPAWN_ENTITY"
+    entity-type: "tnt"
+    apply-random-velocity:
+      - "[0.2, 1, 0.2]" # x, y, z
+      - "[0.2, 1, 0]"
+      - "[0, 1, 0.2]"
+      - "[-0.2, 1, -0.2]"
+      - "[-0.2, 1, 0]"
+      - "[0, 1, -0.2]"
+      - "[-0.2, 1, 0.2]"
+      - "[0.2, 1, -0.2]"
+    stay-time: 10
+
+    on-death-action: "explode"
+    on-end-action: "play-spawn-sound"
+
+    loop-times: 3 # The first time + 3 more = 4 TNTs spawned.
+    loop-delay: 10 # In ticks, if not specified, will use at least 1 to avoid crashes.
+
+  play-spawn-sound: # Play a sound when spawning a nuke.
+    depend-on-action: true
+    action: "PLAY_SOUND"
+    sound: "ENTITY_CHICKEN_EGG,5,1,true"
+    on-end-action: "spawn-particle"
+
+  spawn-particle: # Spawn a particle when spawning a nuke.
+    depend-on-action: true
+    action: "SPAWN_PARTICLE"
+    particle: "flame"
+
+  explode: # Explode when the nuke has been removed.
+    # When an action depend on another one, and it does not
+    # specify its location, it will use the location of the action
+    # origin (this will explode at the entity death location).
+    depend-on-action: true
+    action: "EXPLOSION"
+    explosion-type: "SPHERE"
+    range: "DYNAMIC"
+    max-range: 12
+    on-end-action: "play-explosion-sound"
+
+  play-explosion-sound: # Play the explosion sound.
+    depend-on-action: true
+    action: "PLAY_SOUND"
+    sound: "entity.generic.explode,5,1,true"
+    on-end-action: "spawn-explosion-particle"
+
+  spawn-explosion-particle: # Spawn the explosion particle.
+    depend-on-action: true
+    action: "SPAWN_PARTICLE"
+    particle: "explosion"
